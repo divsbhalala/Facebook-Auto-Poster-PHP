@@ -62,6 +62,7 @@ if(isset($_SESSION['fb_token'])){
 
 $logout = 'http://autofacebookgroupposter.com/autoposter.php?fblogin&logout=true';
 
+
 if (isset($sess)) {
 
     $request = new FacebookRequest($sess,'GET','/me');
@@ -69,8 +70,11 @@ if (isset($sess)) {
     $graph = $response->getGraphObject((GraphUser::className()));
     $name = $graph->getProperty('name');
     $_SESSION['fb_token'] = $sess->getToken();
+
     echo "Hi $name";
     echo " <a href='".$logout."'><buttton>Logoout</button></a>";
+
+
 
 }
 
@@ -80,31 +84,17 @@ if (isset($sess)) {
 
     <div class="grupe">
         <select multiple name="FavWebSite" size="20">
-            <option>https://www.facebook.com/groups/PricelessPossibilities/</option>
-            <option>https://www.facebook.com/groups/networkmarketingcommunity/</option>
-            <option>https://www.facebook.com/groups/n.w.marketers/</option>
-            <option>https://www.facebook.com/groups/NetworkMarketingMasterMindGroup/</option>
-            <option>https://www.facebook.com/groups/advertiseyours/</option>
-            <option>https://www.facebook.com/groups/162470847268401/</option>
-            <option>https://www.facebook.com/groups/007ENGLISH/</option>
-            <option>https://www.facebook.com/groups/119863094732728/</option>
-            <option>https://www.facebook.com/groups/5860308817/</option>
-            <option>https://www.facebook.com/groups/online1marketing1group/</option>
-            <option>https://www.facebook.com/groups/advertiseuronlinebiz/</option>
-            <option>https://www.facebook.com/groups/themokh/</option>
-            <option>https://www.facebook.com/groups/OneFamilyUnited/</option>
-            <option>https://www.facebook.com/groups/InternetNetworkMarketingUKE/</option>
-            <option>https://www.facebook.com/groups/adminupdate/</option>
-            <option>https://www.facebook.com/groups/affiliatemarketingprofessionals/</option>
-            <option>https://www.facebook.com/groups/postanythingx/</option>
-            <option>https://www.facebook.com/groups/360890220674534/</option>
-            <option>https://www.facebook.com/groups/pinoydeal/</option>
-            <option>https://www.facebook.com/groups/ads.pubs/</option>
-            <option>https://www.facebook.com/groups/pinoymembers/</option>
-            <option>https://www.facebook.com/groups/NetworkMarketingFriends.1/</option>
-            <option>https://www.facebook.com/groups/freeads2013/</option>
-            <option>https://www.facebook.com/groups/advertise247/</option>
-            <option>https://www.facebook.com/groups/groupvision/</option>
+            <?php
+            $session = new FacebookSession( $sess->getToken() );
+
+            // graph api request for user data
+
+            $friends = (new FacebookRequest( $session, 'GET', '/me/groups' ))->execute()->getGraphObject()->asArray();
+            //    echo '<pre>' . print_r( $friends, 1 ) . '</pre>';
+            foreach ($friends['data'] as $key) {
+                echo '<option>'.$key->name.'</option><br>';
+            }
+            ?>
         </select>
     </div>
 
@@ -118,12 +108,12 @@ if (isset($sess)) {
 
 
     <div class="margin">
-	<textarea rows="10" cols="50">
-	</textarea>
+	<textarea rows="10" cols="50" placeholder="Enter your text here."></textarea>
     </div>
 
     <div class="margin">
         <input type="file" name="pic" accept="image/*">
+        <input type="button" value="Post">
     </div>
 
     <div class="baner margin">

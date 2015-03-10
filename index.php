@@ -2,7 +2,7 @@
 if (isset($_REQUEST['logout'])) {
     unset($_SESSION['fb_token']);
 }
-if ($_SESSION['fb_token']) {
+if (@$_SESSION['fb_token']) {  //error supressor stavljen
 header('Location: http://autofacebookgroupposter.com/autoposter.php');
 exit;
 }
@@ -24,6 +24,10 @@ exit;
     <meta http-equiv="pragma" content="no-cache" />
     <script type="text/javascript" src="js/main.js"></script>
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-social.css";>
 </head>
 <body>
 
@@ -102,12 +106,24 @@ if (isset($sess)) {
 
 ?>
 <div id="main">
-    <?php
-    if (!isset($sess)) {
-    echo '<a href="'.$helper->getLoginUrl().'" ><img src="img/fb_button.jpg" id="fb_login"> </a>';
-    }
-    ?>
+	<div id="center">
+		<div id="fb_button">
+		<?php
+		if (!isset($sess)) {
+		echo '<a class="btn btn-block btn-social btn-facebook" href="'.$helper->getLoginUrl( array( 'email', 'user_friends','user_groups' ) ).'" > <i class="fa fa-facebook"></i> Sign in with Facebook</a>';
 
+
+
+		}
+		?>
+
+		</div>
+		<div>
+			<h1>Auto Facebook Group Poster</h1>
+			<h3>Automate your groups postings on Facebook</h3><br>
+			<h3>Post to unlimited groups for free!<h3>
+		</div>
+	</div>
 
 </div>
 
