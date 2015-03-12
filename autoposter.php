@@ -1,4 +1,5 @@
-<?php session_start();
+<?php
+session_start();
 
 if (isset($_REQUEST['logout'])) {
     unset($_SESSION['fb_token']);
@@ -32,6 +33,7 @@ if (!$_SESSION['fb_token']) {
                 }
 
                 var groups = [];
+
                 $( "select option:selected" ).each(function() {
                     groups.push(this.id);
                 });
@@ -41,15 +43,14 @@ if (!$_SESSION['fb_token']) {
                     return;
                 }
                 $.ajax({
-                    url: 'http://autofacebookgroupposter.com/autoposter.php',
+                    url: 'http://autofacebookgroupposter.com/background.php',
                     data:{message:message,groups:groups},
                     success: function(data){
-                        alert('Successfuly posted.')
-                       // alert(data);
+                       alert(data);
 
                     },
                     error: function(data) {
-
+                        alert('Send this error to milos.keza@gmail.com: '+data);
                     }
                 });
             });
@@ -116,57 +117,57 @@ if (isset($sess)) {
 
 }
 
-
-if ($_GET['message']) {
-
-    runMyFunction();
-}
-
-
-function runMyFunction()
-{
-
-
-
-    $facebook = new Facebook(array(
-        'appId' => $GLOBALS['app_id'],
-        'secret' => $GLOBALS['app_secret']
-    ));
-
-
-
-    $params = array(
-
-        "access_token" =>$_SESSION['fb_token'] ,
-
-        "message" => $_GET['message'],
-        "link" => "http://autofacebookgroupposter.com",
-        //"picture" => "http://i.imgur.com/lHkOsiH.png",
-        "name" => "How to Auto Post on Facebook with PHP",
-        "caption" => "http://autofacebookgroupposter.com",
-        "description" => "Automatically post on Facebook with PHP using Facebook PHP SDK. How to create a Facebook app. Obtain and extend Facebook access tokens. Cron automation."
-    );
-
-    try {
-
-        $myArray = $_GET['groups'];
-        foreach ($myArray as $value) {
-            $ret = $facebook->api('/'.$value.'/feed', 'POST', $params);
-
-        }
-
-
-//        $ret = $facebook->api('/936921146327264/feed', 'POST', $params);
-//        $ret = $facebook->api('/524710721001729/feed', 'POST', $params);
-        //$ret = $facebook->api('/me/feed', 'POST', $params);
-        //echo '<h1>Successfully posted to Facebook Personal Profile</h1>';
-        //echo '<script>alert("Successfully posted to Facebook Personal Profile")</script>';
-
-    } catch(Exception $e) {
-        echo $e->getMessage();
-    }
-
-}
+//
+//if ($_GET['message']) {
+//
+//    runMyFunction();
+//}
+//
+//
+//function runMyFunction()
+//{
+//
+//
+//
+//    $facebook = new Facebook(array(
+//        'appId' => $GLOBALS['app_id'],
+//        'secret' => $GLOBALS['app_secret']
+//    ));
+//
+//
+//
+//    $params = array(
+//
+//        "access_token" =>$_SESSION['fb_token'] ,
+//
+//        "message" => $_GET['message'],
+//        "link" => "http://autofacebookgroupposter.com",
+//        //"picture" => "http://i.imgur.com/lHkOsiH.png",
+//        "name" => "How to Auto Post on Facebook with PHP",
+//        "caption" => "http://autofacebookgroupposter.com",
+//        "description" => "Automatically post on Facebook with PHP using Facebook PHP SDK. How to create a Facebook app. Obtain and extend Facebook access tokens. Cron automation."
+//    );
+//
+//    try {
+//
+//        $myArray = $_GET['groups'];
+//        foreach ($myArray as $value) {
+//            $ret = $facebook->api('/'.$value.'/feed', 'POST', $params);
+//
+//        }
+//
+//
+////        $ret = $facebook->api('/936921146327264/feed', 'POST', $params);
+////        $ret = $facebook->api('/524710721001729/feed', 'POST', $params);
+//        //$ret = $facebook->api('/me/feed', 'POST', $params);
+//        //echo '<h1>Successfully posted to Facebook Personal Profile</h1>';
+//        //echo '<script>alert("Successfully posted to Facebook Personal Profile")</script>';
+//
+//    } catch(Exception $e) {
+//        echo $e->getMessage();
+//    }
+//
+//}
 
 ?>
 

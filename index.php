@@ -1,4 +1,14 @@
-<?php session_start();
+
+
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Milos
+ * Date: 12.3.2015
+ * Time: 12:24
+ */
+
+session_start();
 if (isset($_REQUEST['logout'])) {
     unset($_SESSION['fb_token']);
 }
@@ -23,7 +33,7 @@ exit;
     <meta name=viewport content="width=device-width">
     <link rel="SHORTCUT ICON" href="img/favicon.ico">
     <meta http-equiv="pragma" content="no-cache" />
-    
+
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 
