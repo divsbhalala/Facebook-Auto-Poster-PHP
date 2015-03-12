@@ -20,9 +20,10 @@ exit;
     <meta name="rating" content="general">
     <meta name="distribution" content="Global">
     <meta name="revisit-after" content="30 days">
+    <meta name=viewport content="width=device-width">
     <link rel="SHORTCUT ICON" href="img/favicon.ico">
     <meta http-equiv="pragma" content="no-cache" />
-    <script type="text/javascript" src="js/main.js"></script>
+    
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 
@@ -107,24 +108,26 @@ if (isset($sess)) {
 ?>
 <div id="main">
 	<div id="center">
+		<div id="text">
+			<h1>Auto Facebook Group Poster</h1>
+			<h3>Automate your groups postings on Facebook</h3><br><br>
+			<h3>Post to unlimited groups for free!<h3>
+		</div>
+		
 		<div id="fb_button">
 		<?php
 		if (!isset($sess)) {
-		echo '<a class="btn btn-block btn-social btn-facebook" href="'.$helper->getLoginUrl( array( 'email', 'user_friends','user_groups' ) ).'" > <i class="fa fa-facebook"></i> Sign in with Facebook</a>';
-
-
-
+		echo '<a class="btn btn-block btn-social btn-facebook" href="'.$helper->getLoginUrl( array( 'email','user_status','publish_actions','manage_pages','user_groups' ) ).'" > <i class="fa fa-facebook"></i> Sign in with Facebook</a>';
 		}
 		?>
-
 		</div>
-		<div>
-			<h1>Auto Facebook Group Poster</h1>
-			<h3>Automate your groups postings on Facebook</h3><br>
-			<h3>Post to unlimited groups for free!<h3>
+		
+		<div id="footer">
+		<strong>&copy; 2015 Autofacebookgroupposter.com</strong>
 		</div>
 	</div>
-
+	
+	
 </div>
 
 
