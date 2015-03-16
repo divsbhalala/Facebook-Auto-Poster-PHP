@@ -1,7 +1,8 @@
 body {
 	margin:0, 0;
 	padding:0, 0;
-    background-image: url("../img/background.jpg");
+    	background-image: url("../img/background.jpg");
+	background-color:#A1A4A4;
 	background-repeat:no-repeat;
 	background-size:100%;
 	font-family:Arial, Helvetica, sans-serif;
@@ -11,31 +12,34 @@ body {
 	background-color:rgba(211,211,211,0.4);
 	border-radius:10%;
 	position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 500px;
-    height: 500px;
-    margin-top: -250px; 
-    margin-left: -250px; 
+    	top: 50%;
+ 	left: 50%;
+    	width: 500px;
+    	height: 500px;
+    	margin-top: -250px; 
+    	margin-left: -250px; 
 	text-align:center;
 }
-
 #fb_button {
-	margin-top:50px;
+	margin-top:15px;
 	display:inline-block;
 }
-h1{
+#text{
+	margin-top:50px;
+}
+.head{
+	font-size:32px;
 	color:#686868;
-	margin-top:80px;
 }
-h3{
-    color:#686868;
-    opacity: 0.4;
+.par{
+	margin-top:30px;
+	font-size:18px;
+    	color:#686868;
+    	opacity: 0.4;
 }
-
-
-
-
-
-
-
+#footer{
+	font-size:8px;
+	color:#686868;
+    	opacity: 0.4;
+	margin-top:160px;
+}
